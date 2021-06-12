@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %} Ajouter un clé (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Ajouter une nouvelle clé (WTForms)
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					<p>
+						{{ form.nom_nom_fournisseur_wtf.label }}<br>
+						{{ form.nom_nom_fournisseur_wtf(size=32) }}<br>
+						{% for error in form.nom_nom_fournisseur_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+					<p>
+						{{ form.nom_nom_couleur_wtf.label }}<br>
+						{{ form.nom_nom_couleur_wtf(size=32) }}<br>
+						{% for error in form.nom_nom_couleur_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				{{ form.submit(class="btn btn-primary") }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

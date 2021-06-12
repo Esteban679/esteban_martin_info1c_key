@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %} Afficher Stock {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Lieu de stock à disposition.
+			</p>
+            <table class="table table-bordered table-sm">
+            {% if data %}
+                <thead>
+                    <tr>
+                        <th class="align-middle">
+                            id
+                        </th>
+                        <th class="align-middle">
+                            Rue
+                        </th>
+                        <th class="align-middle">
+							Ville
+                        </th>
+                        <th class="align-middle">
+							Code postale
+                        </th>
+                        <th class="align-middle">
+							Nom du site
+                        </th>
+						<th class="align-middle">
+						Ajouter
+                        </th>
+						<th class="align-middle">
+						Edit
+                        </th>
+						<th class="align-middle">
+							Delete
+                        </th>
+                    </tr>
+                </thead>
+            {% endif %}
+
+            {% for row in data %}
+				<tbody>
+					<tr>
+						<td class="align-middle">
+							{{ row.id_lieu_stock_cle }}
+						<td class="align-middle">
+							{{ row.rue }}
+						</td>
+						</td>
+						<td class="align-middle">
+							{{ row.ville }}
+						</td>
+						<td class="align-middle">
+							{{ row.code_postale }}
+						</td>
+						<td class="align-middle">
+							{{ row.nom_site }}
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-outline-success" href="{{ url_for('stock_ajouter_wtf') }}" role="button">Ajouter</a>
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-outline-primary" href="{{ url_for('stock_update_wtf', id_stock_btn_edit_html=row.id_lieu_stock_cle) }}" role="button">Edit</a>
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-outline-danger" href="{{ url_for('stock_delete_wtf', id_stock_btn_delete_html=row.id_lieu_stock_cle) }}" role="button">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+            {% else %}
+				<tbody>
+					<tr>
+						<td>
+							Aucun genre.
+						</td>
+						<td>
+							<a class="btn btn-primary" href="{{ url_for('stock_ajouter_wtf') }}" role="button">Ajouter</a>
+						</td>
+					</tr>
+				</tbody>
+            {% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

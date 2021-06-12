@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Homepage Clé {% endblock %}
+{% block body %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3>
+				Bienvenue à la page d'accueil !!
+			</h3>
+			<h4>
+				Ce que contient ma BD :<br>
+			</h4>
+			<div class="btn-group">
+				  <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+					Liste de toutes mes tables
+				  </button>
+				  		<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="">
+							<li><a class="dropdown-item" href="{{ url_for('genres_afficher', order_by='ASC', id_fournisseur_sel=0) }}">Fournisseur</a></li>
+							<li><a class="dropdown-item" href="{{ url_for('type_afficher', order_by='ASC', id_type_cle_sel=0) }}">Type</a></li>
+							<li><a class="dropdown-item" href="{{ url_for('stock_afficher', order_by='ASC', id_lieu_stock_cle_sel=0) }}">Stock</a></li>
+							<li><a class="dropdown-item" href="{{ url_for('ouverture_afficher', order_by='ASC', id_ouv_lieu_sel=0) }}">Ouverture</a></li>
+							<li><a class="dropdown-item" href="{{ url_for('procedure') }}">Procédure</a></li>
+							<li><a class="dropdown-item" href="{{ url_for('cle_fournisseur_afficher', id_cle_sel=0) }}">Clés/Fournisseur</a></li>
+						</div>
+					</div>
+				</div>
+		<li class="list-item">
+			Possède une page procédure
+				</li>
+				<li class="list-item">
+					Possède une fonctionnalitée de Recherche (écrire le mot et appuier sur le bouton "Search")
+				</li>
+				<li class="list-item">
+					Possède un bouton déroulant avec liste de toute les tables
+				</li>
+		</div>
+	</div>
+</div>
+{% endblock %}

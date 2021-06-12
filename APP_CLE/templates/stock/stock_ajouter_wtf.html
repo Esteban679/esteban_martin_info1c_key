@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Ajouter un Lieu de stock (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Ajouter un nouveau Lieu de stock (WTForms)
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form.hidden_tag() }}
+				<div class="form-group">
+					<p>
+						{{ form.nom_site_wtf.label }}<br>
+						{{ form.nom_site_wtf(size=32) }}<br>
+						{% for error in form.nom_site_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+					<p>
+						{{ form.ville_wtf.label }}<br>
+						{{ form.ville_wtf(size=32) }}<br>
+						{% for error in form.ville_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+					<p>
+						{{ form.rue_wtf.label }}<br>
+						{{ form.rue_wtf(size=32) }}<br>
+						{% for error in form.rue_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+					<p>
+						{{ form.code_postale_wtf.label }}<br>
+						{{ form.code_postale_wtf(size=32) }}<br>
+						{% for error in form.code_postale_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				{{ form.submit(class="btn btn-primary") }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

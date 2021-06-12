@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %} Effacer un TYPE (WTF) {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Effacer un TYPE
+			</p>
+			<form action="" method="POST" novalidate>
+				<!-- Protection contre les attaques Cross-Site Request Forgery (CSRF) -->
+				{{ form_delete.hidden_tag() }}
+				<table class="table table-bordered table-sm">
+					{% if data_films_associes %}
+						<h3>Ce Fournisseur est associé avec le(s) clé(s) suivant(s) :</h3>
+					{% else %}
+						<h3>Ce Type à effacer n'est associé à aucune clé.</h3>
+					{% endif %}
+					{% if data_films_associes %}
+						<thead>
+							<tr>
+								<th>
+									Clés
+								</th>
+							</tr>
+						</thead>
+						{% for row in data_films_associes %}
+							<tbody>
+								<tr>
+									<td>
+										{{ row.nom_type }}
+									</td>
+								</tr>
+							</tbody>
+						{% endfor %}
+					{% endif %}
+				</table>
+
+
+				<div class="form-group">
+					<p>
+						{{ form_delete.nom_type_delete_wtf.label }}<br>
+						{{ form_delete.nom_type_delete_wtf(size=32, readonly=true) }}<br>
+						{% for error in form_delete.nom_type_delete_wtf.errors %}
+							<span style="color: red;">[{{ error }}]</span>
+						{% endfor %}
+					</p>
+				</div>
+				{% if btn_submit_del %}
+					{{ form_delete.submit_btn_del(class="btn btn-outline-danger") }}
+				{% endif %}
+				{{ form_delete.submit_btn_conf_del(class="btn btn-outline-warning") }}
+
+				{{ form_delete.submit_btn_annuler(class="btn btn-info") }}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

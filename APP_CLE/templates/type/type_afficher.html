@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %} Afficher types {% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<p>
+				Types à disposition.
+			</p>
+            <table class="table table-bordered table-sm">
+            {% if data %}
+                <thead>
+                    <tr>
+                        <th class="align-middle">
+                            id
+                        </th>
+                        <th class="align-middle">
+                            Type
+                        </th>
+                        <th class="align-middle">
+						Ajouter
+                        </th>
+                        <th class="align-middle">
+						Edit
+                        </th>
+                        <th class="align-middle">
+						Delete
+                        </th>
+                    </tr>
+                </thead>
+            {% endif %}
+
+            {% for row in data %}
+				<tbody>
+					<tr>
+						<td class="align-middle">
+							{{ row.id_type_cle }}
+						</td>
+						<td class="align-middle">
+							{{ row.nom_type }}
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-outline-success" href="{{ url_for('type_ajouter_wtf') }}" role="button">Ajouter</a>
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-outline-primary" href="{{ url_for('type_update_wtf', id_type_btn_edit_html=row.id_type_cle) }}" role="button">Edit</a>
+						</td>
+						<td class="text-center" class="align-middle">
+							<a class="btn btn-outline-danger" href="{{ url_for('type_delete_wtf', id_type_btn_delete_html=row.id_type_cle) }}" role="button">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+            {% else %}
+				<tbody>
+					<tr>
+						<td>
+							Aucun type.
+						</td>
+						<td>
+							<a class="btn btn-primary" href="{{ url_for('type_ajouter_wtf') }}" role="button">Ajouter</a>
+						</td>
+					</tr>
+				</tbody>
+            {% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
